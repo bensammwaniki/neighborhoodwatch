@@ -66,7 +66,7 @@ def update_profile(request):
             profile.location = location
             profile.save()
         else:
-            profile = Profile(user_id=current_user.id,name=name,
+            profile = Profile(user_id=current_user.id,name=name,neighborhood=neighborhood,location=location,
                               profile_photo=profile_url, bio=bio)
             profile.save_profile()
 

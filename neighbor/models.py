@@ -71,11 +71,11 @@ class Neighborhood(models.Model):
         self.save()
 
     @classmethod
-    def delete_neighbourhood(cls, id):
+    def delete_neighborhood(cls, id):
         cls.objects.filter(id=id).delete()
 
     @classmethod
-    def update_neighbourhood(cls, id):
+    def update_neighborhood(cls, id):
         cls.objects.filter(id=id).update()
 
     @classmethod
@@ -94,13 +94,14 @@ class Neighborhood(models.Model):
 
 
 class Profile(models.Model):
+
     user = models.OneToOneField(User, on_delete=models.CASCADE, default=1)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, null=True)
     email = models.EmailField(max_length=100, blank=True, null=True)
-    location = models.ForeignKey(Location, on_delete=models.CASCADE)
-    neighbourhood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True)
+    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE, null=True)
     profile_photo = CloudinaryField('image')
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True,null=True)
     def save_profile(self):
         self.save()
 

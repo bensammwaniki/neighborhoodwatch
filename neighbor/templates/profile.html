@@ -21,15 +21,14 @@
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         {% endif %}
         <button type="button" class="btn btn-info text-light" data-bs-toggle="modal" data-bs-target="#exampleModal">Update info</button>
-        <p class="card-text">
+        <br>
+        <p class="card-text badge bg-warning ">
           {{ user.email }}
         </p>
         <br>
-        {% for location in locations %}
-        <h4 class="card-text">
-          {{ user.email }}
-        </h4>
-        {% endfor %}
+        <p class="card-text badge bg-danger ">
+         Location :   {{ profile.location }}
+        </p>
       </div>
     </div>
     <!-- display card  -->
