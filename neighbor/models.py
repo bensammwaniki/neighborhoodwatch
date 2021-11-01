@@ -92,7 +92,6 @@ class Neighborhood(models.Model):
     occupants_count = models.IntegerField(default=0)
     Neighbor = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     def create_neigborhood(self):
         self.save()
@@ -126,7 +125,6 @@ class Business(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     neighbourhood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     def create_business(self):
         self.save()
