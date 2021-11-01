@@ -8,7 +8,7 @@ import cloudinary.api
 @login_required(login_url='/accounts/login/')
 def home(request):
     return render(request, 'index.html')
-
+@login_required(login_url='/accounts/login/')
 def profile(request):
     current_user = request.user
     userid =current_user.id
@@ -19,7 +19,7 @@ def profile(request):
     businesses = Business.objects.filter(user_id=userid)
     return render(request, 'profile.html', {'profile': profile, 'posts': posts, 'locations': locations, 'neighborhood': neighborhood, 'businesses': businesses})
 
-
+@login_required(login_url='/accounts/login/')
 def update_profile(request):
     if request.method == 'POST':
 
@@ -29,7 +29,8 @@ def update_profile(request):
         last_name = request.POST['last_name']
         username = request.POST['username']
         email = request.POST['email']
-
+        neighborhood = request.POST["neighbourhood"]
+        location = request.POST["location"]
         bio = request.POST['bio']
 
         profile_image = request.FILES['profile_pic']
@@ -38,11 +39,27 @@ def update_profile(request):
 
         user = User.objects.get(id=current_user.id)
 
+    # check for an instance
+        if location == "":
+            location = None
+        else:
+            location = Location.objects.get(name=location)
+
+        if neighborhood == "":
+            neighborhood = None
+        else:
+            neighborhood = Neighborhood.objects.get(name=neighborhood)
+
+    #end check for an instance
+
+
         if Profile.objects.filter(user_id=current_user.id).exists():
 
             profile = Profile.objects.get(user_id=current_user.id)
             profile.profile_photo = profile_url
             profile.bio = bio
+            profile.neighborhood = neighborhood
+            profile.location = location
             profile.save()
         else:
             profile = Profile(user_id=current_user.id,

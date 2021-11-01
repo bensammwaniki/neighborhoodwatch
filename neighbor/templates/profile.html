@@ -15,8 +15,21 @@
         <h4 class="card-text">
           {{ user.last_name }} {{ user.first_name }}
         </h4>
+        {% if profile.bio %}
+        <p class="card-text">{{ profile.bio }}</p>
+        {% else %}
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        {% endif %}
         <button type="button" class="btn btn-info text-light" data-bs-toggle="modal" data-bs-target="#exampleModal">Update info</button>
+        <p class="card-text">
+          {{ user.email }}
+        </p>
+        <br>
+        {% for location in locations %}
+        <h4 class="card-text">
+          {{ user.email }}
+        </h4>
+        {% endfor %}
       </div>
     </div>
     <!-- display card  -->
@@ -55,35 +68,6 @@
       </div>
 <div class="clear-fix">
 
-</div>
-
-      <div class="col-sm-9 m-3" style="height: fit-content;">
-        <div class="card cards1">
-          <div class="card-body">
-            <h5 class="card-title">Add My Neighborhood</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <form action="">
-                  <div class="form-group mb-3">
-                    <select class="form-select" aria-label="Default select example" required>
-                      <option selected>Neighborhood name</option>
-                      <option value="Greenspan">Greenspan</option>
-                      <option value="Bee center">Bee center</option>
-                      <option value="Kwa Chief">Kwa Chief</option>
-                    </select>
-                  </div>
-                  <div class="form-group mb-3">
-                    <select class="form-select" aria-label="Default select example" required>
-                      <option selected>select your location</option>
-                      <option value="Donholm">Donholm</option>
-                      <option value="Kayole">Kayole</option>
-                      <option value="Umoja">Umoja</option>
-                    </select>
-                  </div>
-                  <button type="submit" class="btn btn-warning">Save</button>
-            </form>
-          </div>
-        </div>
-      </div>
 
       
       <div class="col-sm-4 m-2">
@@ -169,6 +153,24 @@
                 <label for="bio">Bio</label>
                 <textarea name="bio" id="bio" cols="30" rows="3"
                     class="form-control">{{ profile.bio }}</textarea>
+            </div>
+            <div class="form-group mb-3">
+              <label for="bio">Neighborhood</label>
+              <select class="form-select" aria-label="Default select example" required>
+                <option selected>Neighborhood name</option>
+                <option value="Greenspan">Greenspan</option>
+                <option value="Bee center">Bee center</option>
+                <option value="Kwa Chief">Kwa Chief</option>
+              </select>
+            </div>
+            <div class="form-group mb-3">
+              <label for="bio">Location</label>
+              <select class="form-select" aria-label="Default select example" required>
+                <option selected>select your location</option>
+                <option value="Donholm">Donholm</option>
+                <option value="Kayole">Kayole</option>
+                <option value="Umoja">Umoja</option>
+              </select>
             </div>
             <div class="form-group mb-3">
                 <label for="profile_pic">Profile Picture</label>
