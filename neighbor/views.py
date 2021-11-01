@@ -10,7 +10,14 @@ def home(request):
     return render(request, 'index.html')
 
 def profile(request):
-    return render(request, 'profile.html')
+    current_user = request.user
+    userid =current_user.id
+    profile = Profile.objects.filter(user_id = current_user.id).first()
+    posts = Post.objects.filter(user_id=current_user.id)
+    locations = Location.objects.all()
+    neighborhood = Neighborhood.objects.all()
+    businesses = Business.objects.filter(user_id=userid)
+    return render(request, 'profile.html', {'profile': profile, 'posts': posts, 'locations': locations, 'neighborhood': neighborhood, 'businesses': businesses})
 
 
 def update_profile(request):

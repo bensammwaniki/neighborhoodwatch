@@ -4,14 +4,22 @@
 
 <div class="container" style="margin-top: 20px;">
   <div class="row flex nowrap">
+    <!-- display card  -->
     <div class="card cards1 col-sm-3 m-2 p-2" style="min-height: 500px;">
+      {% if profile.profile_photo %}
+      <img src="{{ profile.profile_photo.url }}" class="card-img-top" alt="..." style="width: 18rem;height: 18rem; border-radius: 50%;object-fit: cover;">
+      {% else %}
       <img src="{% static '/img/4.jpg' %}" class="card-img-top" alt="..." style="width: 18rem;height: 18rem; border-radius: 50%;object-fit: cover;">
+      {% endif %}
       <div class="card-body">
+        <h4 class="card-text">
+          {{ user.last_name }} {{ user.first_name }}
+        </h4>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         <button type="button" class="btn btn-info text-light" data-bs-toggle="modal" data-bs-target="#exampleModal">Update info</button>
       </div>
     </div>
-
+    <!-- display card  -->
 
     <div class="row col-md-9">
       <div class="col-sm-9 m-3" style="height: fit-content;">

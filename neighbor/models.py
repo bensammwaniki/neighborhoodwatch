@@ -58,8 +58,6 @@ class Profile(models.Model):
 
     bio = models.TextField(max_length=500, blank=True, null=True)
 
-    contact = models.CharField(max_length=50, blank=True, null=True)
-
     def update(self):
         self.save()
 
