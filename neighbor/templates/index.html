@@ -29,47 +29,7 @@
 
   <!-- overlay -->
 <div class="overlay">
-    <div class="row designmain nowrap">
-        <div class="col">
-            <div class="customer">
-                <p class="counter-count" style="background-color: #05000000;border: 2px solid #e70000;" >10</p>
-            </div>
-        </div>
 
-        <div class="col">
-            <div class="design">
-                <p class="counter-count"  style="background-color: #05000000;border: 2px solid #0c4900;"  >7</p>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="order">
-                <p class="counter-count"  style="background-color: #05000000;border: 2px solid #ffd000;" >8</p>
-
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="order">
-                <p class="counter-count"  style="background-color: #05000000;border: 2px solid #00fff2;" >9</p>
-
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="order">
-                <span class="badge bg-warning text-dark" style="object-position: bottom;">{{ rating.date }}</span>
-            </div>
-        </div>
-
-    </div>
-    <div class="container">
-        <form action="{% url 'search.post' %}" class="d-flex">
-            {% csrf_token %}
-            <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-warning" type="submit">Search</button>
-        </form>    
-    </div>
 </div>
  <!-- overlay -->
 
@@ -80,29 +40,28 @@
   <div class="container">
       <div class='row'>
 <!-- card  -->
-{% for project in projects %}
         <div class="card" style="width: 24rem; margin: 10px;padding: 10px;">
-            <img src="{{ project.screenshort.url }}" class="card-img-top carddisp" alt="...">
+            <img src="" class="card-img-top carddisp" alt="...">
             <div class="card-body">
-                <h5 class="card-title">{{ project.project_name }}</h5>
+                <h5 class="card-title">story</h5>
                 <div class="bdge">
                     <div>
-                        <span class="badge bg-success"> posted on {{ project.posted_date|date:"M d, Y"  }}</span>
+                        <span class="badge bg-success"> posted on</span>
                     </div>
                     <div>
-                        <a href="{{ project.project_url }}" target="_blank" rel="noopener noreferrer" class="badge bg-dark">live link</a>
+                        <a target="_blank" rel="noopener noreferrer" class="badge bg-dark">live link</a>
                     </div>
                 </div>
                 <div class="infom">
 
                     <div class="inf">
-                        <img src="{{project.user.profile.profile_photo.url}}"
+                        <img src=""
                         style="width: 50px;height: 50px;"
                         alt="" class="avatar-md avatar rounded-circle">
-                        <small>  {{project.user.username}}</small>
+                        <small>username</small>
                     </div>
                     <div>
-                        <a href="{% url 'display.project' project.id %}" type="button" class="btn btn-warning">Learn more</a>
+                        <a  type="button" class="btn btn-warning">Learn more</a>
                     </div>
                     
                 </div>
@@ -113,7 +72,6 @@
           </div>
 <!-- card  -->
 <!-- card  -->
-{% empty %}
 <div class="card" style="width: 24rem; margin: 10px;padding: 10px;">
     <img src="{% static '/img/3.jpg' %}" class="card-img-top" alt="...">
     <div class="card-body">
@@ -143,7 +101,6 @@
   </div>
 <!-- card  -->
 
-{% endfor %}          
 
       </div>
   </div>
@@ -157,15 +114,14 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        <form action="{% url 'save.project' %}" method="post"
+        <form  method="post"
             enctype="multipart/form-data">
-            {% csrf_token %}
             <div class="form-group">
                 <label for="image_name">Project name</label>
                 <input type="text" class="form-control" value="" name="project_name"
                     required>
             </div>
-            <input type="hidden" name="user_id" value="{{ user.id }}">
+            <input type="hidden" name="user_id" value="">
             <div class="form-group mt-3">
                 <label for="exampleFormControlTextarea1">url</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"

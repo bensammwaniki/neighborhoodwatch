@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai&family=Zilla+Slab:wght@300&display=swap');
+body{
+    font-family: 'Zilla Slab', serif;
+}
+
+h1,nav{
+    font-family: 'Hind Madurai', sans-serif;
+
+}
+.carousel-item{
+    height: 500px;
+    object-fit: cover;
+    object-position: bottom;
+}
+.carousel{
+    margin-top: 20px;
+}
+.bdge{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+.inf{
+    display: flex;
+    justify-content: 10px;
+    text-align: center;
+    margin: 5px;
+    vertical-align: middle;
+    line-height: 50px;
+}
+.slide{
+        position: relative;
+}
+.overlay{
+    width: 800px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.37);
+    position: absolute;
+    top: 15%;
+    left: 28%;
+  }
+  .overlay2{
+    width: 800px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.37);
+    position: absolute;
+    top: 11%;
+    left: 28%;
+  }
+.infom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.counter
+{
+    background-color: #eaecf0;
+    text-align: center;
+}
+.employees,.customer,.design,.order
+{
+    margin-top: 70px;
+    margin-bottom: 70px;
+    margin-left: 80px;
+    
+}
+.counter-count
+{
+    font-size: 28px;
+    background-color: #e7e3005e;
+    border-radius: 50%;
+    position: relative;
+    color: #ffffff;
+    text-align: center;
+    line-height: 92px;
+    width: 92px;
+    height: 92px;
+    border: 2px solid #e7e300;
+    align-items: center;
+}
+.counter-count2
+{
+    font-size: 18px;
+    background-color: #e7e3005e;
+    border-radius: 50%;
+    position: relative;
+    color: #000000;
+    text-align: center;
+    line-height: 50px;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #e7e300;
+    align-items: center;
+}
+
+.designmain{
+    display: flex;
+    justify-content: space-evenly;
+}
+.designmain2{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    width: fit-content;
+    margin-left: 50px;
+}
+.prof{
+    width: 100%;
+    margin: auto;
+    margin-top: 0px;
+    max-height: 400px;
+}
+.image{
+    margin-top: 10px;
+    height: 200px;
+    background-image: url('img/2.jpg');
+    background-size: cover;
+}
+.profp{
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    margin: auto;
+    margin-top: -100px;
+    border:5px solid white;
+    border-radius: 100%;
+}
+.bod{
+    display: flex;
+    flex-direction: column;
+    color: turquoise;
+}
+.carddisp{
+min-height: 250px;
+object-fit: cover;
+}
