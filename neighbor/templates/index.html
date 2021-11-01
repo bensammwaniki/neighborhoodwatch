@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- carousel -->
+
+<div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static '/img/1.jpg' %}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static '/img/2.jpg' %}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static '/img/3.jpg' %}" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <!-- carousel -->
+
+  <!-- overlay -->
+<div class="overlay">
+    <div class="row designmain nowrap">
+        <div class="col">
+            <div class="customer">
+                <p class="counter-count" style="background-color: #05000000;border: 2px solid #e70000;" >10</p>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="design">
+                <p class="counter-count"  style="background-color: #05000000;border: 2px solid #0c4900;"  >7</p>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="order">
+                <p class="counter-count"  style="background-color: #05000000;border: 2px solid #ffd000;" >8</p>
+
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="order">
+                <p class="counter-count"  style="background-color: #05000000;border: 2px solid #00fff2;" >9</p>
+
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="order">
+                <span class="badge bg-warning text-dark" style="object-position: bottom;">{{ rating.date }}</span>
+            </div>
+        </div>
+
+    </div>
+    <div class="container">
+        <form action="{% url 'search.post' %}" class="d-flex">
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-warning" type="submit">Search</button>
+        </form>    
+    </div>
+</div>
+ <!-- overlay -->
+
+
+
+
+
+  <div class="container">
+      <div class='row'>
+<!-- card  -->
+{% for project in projects %}
+        <div class="card" style="width: 24rem; margin: 10px;padding: 10px;">
+            <img src="{{ project.screenshort.url }}" class="card-img-top carddisp" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ project.project_name }}</h5>
+                <div class="bdge">
+                    <div>
+                        <span class="badge bg-success"> posted on {{ project.posted_date|date:"M d, Y"  }}</span>
+                    </div>
+                    <div>
+                        <a href="{{ project.project_url }}" target="_blank" rel="noopener noreferrer" class="badge bg-dark">live link</a>
+                    </div>
+                </div>
+                <div class="infom">
+
+                    <div class="inf">
+                        <img src="{{project.user.profile.profile_photo.url}}"
+                        style="width: 50px;height: 50px;"
+                        alt="" class="avatar-md avatar rounded-circle">
+                        <small>  {{project.user.username}}</small>
+                    </div>
+                    <div>
+                        <a href="{% url 'display.project' project.id %}" type="button" class="btn btn-warning">Learn more</a>
+                    </div>
+                    
+                </div>
+
+
+
+            </div>
+          </div>
+<!-- card  -->
+<!-- card  -->
+{% empty %}
+<div class="card" style="width: 24rem; margin: 10px;padding: 10px;">
+    <img src="{% static '/img/3.jpg' %}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <div class="bdge">
+            <div>
+                <span class="badge bg-success">date</span>
+            </div>
+            <div>
+                <a href="http://" target="_blank" rel="noopener noreferrer" class="badge bg-dark">live link</a>
+            </div>
+        </div>
+        <div class="infom">
+
+            <div class="inf">
+                <img src="{% static '/img/3.jpg' %}"
+                style="width: 50px;height: 50px;"
+                alt="" class="avatar-md avatar rounded-circle">
+                <small>  Special title treatment</small>
+            </div>
+            <div>
+                <a href="http://" type="button" class="btn btn-warning">Rate app</a>
+            </div>
+            
+        </div>
+    </div>
+  </div>
+<!-- card  -->
+
+{% endfor %}          
+
+      </div>
+  </div>
+
+<!-- post modal  -->
+  <div class="modal fade" id="post" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Post your project</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <form action="{% url 'save.project' %}" method="post"
+            enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="image_name">Project name</label>
+                <input type="text" class="form-control" value="" name="project_name"
+                    required>
+            </div>
+            <input type="hidden" name="user_id" value="{{ user.id }}">
+            <div class="form-group mt-3">
+                <label for="exampleFormControlTextarea1">url</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"
+                    name="project_url" required></textarea>
+            </div>
+            <div class="form-group mt-3">
+                <label for="exampleFormControlFile1">Upload screenshot</label>
+                <input type="file" class="form-control" id="exampleFormControlFile1"
+                    name="screenshort" required>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-warning">Upload</button>
+        </form>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+{% endblock %}
