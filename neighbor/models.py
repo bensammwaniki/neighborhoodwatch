@@ -86,7 +86,7 @@ class Location(models.Model):
     def __str__(self):
         return self.name
 
-class Neighbourhood(models.Model):
+class Neighborhood(models.Model):
     name = models.CharField(max_length=50)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     occupants_count = models.IntegerField(default=0)
@@ -119,13 +119,12 @@ class Neighbourhood(models.Model):
         return self.name
 
 
-
 class Business(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
     description = models.TextField(blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
+    neighbourhood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
