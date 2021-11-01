@@ -4,6 +4,7 @@ from .models import *
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+from os import name
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def home(request):
@@ -29,7 +30,10 @@ def update_profile(request):
         last_name = request.POST['last_name']
         username = request.POST['username']
         email = request.POST['email']
-        neighborhood = request.POST["neighbourhood"]
+
+        name = request.POST["first_name"] + " " + request.POST["last_name"]
+
+        neighborhood = request.POST["neighborhood"]
         location = request.POST["location"]
         bio = request.POST['bio']
 
@@ -62,7 +66,7 @@ def update_profile(request):
             profile.location = location
             profile.save()
         else:
-            profile = Profile(user_id=current_user.id,
+            profile = Profile(user_id=current_user.id,name=name,
                               profile_photo=profile_url, bio=bio)
             profile.save_profile()
 
