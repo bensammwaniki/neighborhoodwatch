@@ -5,7 +5,7 @@ from django.conf import settings
 
 urlpatterns = [
     path("", views.home),
-    # path("profile/", views.profile),
+    path("profile/", views.profile),
     # path('profile/update/', views.update_profile, name='update.profile'),
     # path('add/', views.postimage, name='save.project'),
     # path('display/<int:id>/', views.show_image, name='display.project'),

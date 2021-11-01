@@ -86,27 +86,36 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Post your project</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Add post update</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
         <form  method="post"
             enctype="multipart/form-data">
             <div class="form-group">
-                <label for="image_name">Project name</label>
-                <input type="text" class="form-control" value="" name="project_name"
+                <label for="image_name">Post name</label>
+                <input type="text" class="form-control" value="" name="post_name"
                     required>
+            </div>
+            <div class="form-group">
+                <label for="image_name">location</label>
+                <select class="form-select" aria-label="Default select example" required>
+                    <option selected>select your location</option>
+                    <option value="Donholm">Donholm</option>
+                    <option value="Kayole">Kayole</option>
+                    <option value="Umoja">Umoja</option>
+                  </select>
             </div>
             <input type="hidden" name="user_id" value="">
             <div class="form-group mt-3">
-                <label for="exampleFormControlTextarea1">url</label>
+                <label for="exampleFormControlTextarea1">Description</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"
                     name="project_url" required></textarea>
             </div>
             <div class="form-group mt-3">
-                <label for="exampleFormControlFile1">Upload screenshot</label>
+                <label for="exampleFormControlFile1">Upload a file</label>
                 <input type="file" class="form-control" id="exampleFormControlFile1"
-                    name="screenshort" required>
+                    name="image" required>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-warning">Upload</button>
