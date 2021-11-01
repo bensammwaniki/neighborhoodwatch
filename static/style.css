@@ -57,14 +57,6 @@ nav{
 
 }
 
-  .overlay2{
-    width: 800px;
-    height: 400px;
-    background-color: rgba(0, 0, 0, 0.37);
-    position: absolute;
-    top: 11%;
-    left: 28%;
-  }
 .infom{
     display: flex;
     justify-content: space-between;

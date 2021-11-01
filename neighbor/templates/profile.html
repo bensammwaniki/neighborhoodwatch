@@ -2,86 +2,67 @@
 {% load static %}
 {% block content %}
 
-<!-- carousel -->
-
-<div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="{% static '/img/1.jpg' %}" class="d-block w-100" alt="...">
+<div class="container" style="margin-top: 20px;">
+  <div class="row flex nowrap">
+    <div class="card cards1" style="width: 20rem;min-height: 450px;">
+      <img src="{% static '/img/4.jpg' %}" class="card-img-top" alt="..." style="width: 18rem;height: 18rem; border-radius: 50%;object-fit: cover;">
+      <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <button type="button" class="btn btn-info text-light" data-bs-toggle="modal" data-bs-target="#exampleModal">Update info</button>
       </div>
-      {% for image in images %}
-      <div class="carousel-item">
-        <img src="{{ image.image.url }}" class="d-block w-100" alt="...">
-      </div>
-      {% empty %}
-      <div class="carousel-item">
-        <img src="{% static '/img/3.jpg' %}" class="d-block w-100" alt="...">
-      </div>
-      {% endfor %}
     </div>
 
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-  <!-- carousel -->
 
-  <!-- overlay -->
-<div class="overlay2">
-	<div class="row prof">
-        <div class="card profilecard">
-            <div class="image">
-            </div>
-            {% if profile.profile_photo %}
-            <img src="{{profile.profile_photo.url}}" alt="" class="card-img-top profp avatar-md avatar rounded-circle" >
-            {%else%}
-            <img src="{% static 'img/1.jpg' %}" class="card-img-top profp avatar-md avatar rounded-circle"  alt="...">
-            {% endif %}
-            <div class="card-body text-center">
-                <div>
-                    <h4 class="card-text">
-                        {{ user.last_name }} {{ user.first_name }}
-                    </h4>
-                </div>
+    <!-- <div class="row col-md-9">
+      <div class="col" style="height: fit-content;">
+        <div class="card cards1">
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </div> -->
 
-                <div>
-                <p class="card-text">
-                    {% if profile.bio %}
-                    {{ profile.bio }}
-                    {% else %}
-                    <span class="text-danger">  Some quick example text to build on the card title and make up the bulk of the card's content.</span>
-                    {% endif %}
-                </p>
-                <a type="button" class="btn btn-warning" aria-current="page" data-bs-toggle="modal" data-bs-target="#exampleModal">update profile</a>
-                </div> 
-            </div>
-          </div>
-	</div>
-</div>
-<!-- overlay -->
 
-    <div class="container" style="margin-top: 10px;">
-        <div class="row">
-          {% for image in images %}
-          <div class="card" style="width: 25rem;height: 300px;margin: 10px;padding: 5px;">
-              <img src="{{ image.image.url }}" class="card-img-top" alt="..." style="object-fit: cover;height: 260px;">
+    <div class="row col-md-9">
+      <div class="col-sm-4">
+        <div class="card cards1">
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
           </div>
-          {% empty %}
-          <div class="card" style="width: 18rem;height: 300px; margin: 10px;">
-              <img src="{{profile.profile_photo.url}}" alt="" class="card-img-top">
-              <div class="card-body">
-              </div>
-          </div>
-          {% endfor %}
-      
         </div>
       </div>
 
+
+      <div class="col-sm-4">
+        <div class="card cards1">
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-sm-4">
+        <div class="card cards1">
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+  </div>
+</div>
+<!-- modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -91,28 +72,27 @@
         </div>
         <div class="modal-body">
    <!-- form -->
-        <form action="{% url 'update.profile' %}" method="POST"
+        <form action="" method="POST"
             enctype="multipart/form-data">
-            {% csrf_token %}
             <div class="form-group mb-3">
                 <label for="name">First Name</label>
                 <input type="text" class="form-control" id="first_name"
-                    name="first_name" value="{{ user.first_name }}">
+                    name="first_name" value="">
             </div>
             <div class="form-group mb-3">
                 <label for="name">Last Name</label>
                 <input type="text" class="form-control" id="last_name"
-                    name="last_name" value="{{ user.last_name }}">
+                    name="last_name" value="">
             </div>
             <div class="form-group mb-3">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username"
-                    name="username" value="{{ user.username }}">
+                    name="username" value="">
             </div>
             <div class="form-group mb-3">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" name="email"
-                    value="{{ user.email}}">
+                    value="">
             </div>
             <div class="form-group mb-3">
                 <label for="bio">Bio</label>
