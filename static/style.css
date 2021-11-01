@@ -1,19 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai&family=Zilla+Slab:wght@300&display=swap');
-body{
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+/* body{
     font-family: 'Zilla Slab', serif;
 }
 
 h1,nav{
     font-family: 'Hind Madurai', sans-serif;
 
+} */
+body a{
+    text-decoration: none;
+}
+nav{
+    box-shadow: gray 0px 2px 6px;   
 }
 .carousel-item{
-    height: 500px;
+    height: 700px;
+}
+.w-100{
+    height: 700px;
     object-fit: cover;
-    object-position: bottom;
+    object-position: 0px 50%;
 }
 .carousel{
-    margin-top: 20px;
+    margin-top: 6px;
 }
 .bdge{
     display: flex;
@@ -32,13 +41,22 @@ h1,nav{
         position: relative;
 }
 .overlay{
-    width: 800px;
-    height: 400px;
-    background-color: rgba(0, 0, 0, 0.37);
+    width: 1000px;
+    height: fit-content;
     position: absolute;
-    top: 15%;
-    left: 28%;
+    top: 40%;
+    left: 25%;
+    text-align: center;
+    color: rgb(246, 111, 0);
+    text-shadow: rgb(27, 27, 27) 2px 5px 4px;
   }
+
+
+.cards1:hover{
+    box-shadow: gray 0px 2px 6px;
+
+}
+
   .overlay2{
     width: 800px;
     height: 400px;
