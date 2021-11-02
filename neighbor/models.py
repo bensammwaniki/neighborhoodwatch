@@ -114,7 +114,7 @@ class Post(models.Model):
     posted_date = models.DateTimeField(auto_now_add=True)
     profile = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
-    neighbourhood = models.ForeignKey(
+    neighborhood = models.ForeignKey(
         Neighborhood, on_delete=models.CASCADE, default=1)
     created_at = models.DateTimeField(auto_now_add=True)
 

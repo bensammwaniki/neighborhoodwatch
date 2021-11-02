@@ -4,11 +4,26 @@ from .models import *
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-from os import name
-# Create your views here.
+
+
 @login_required(login_url='/accounts/login/')
 def home(request):
-    return render(request, 'index.html')
+    current_user = request.user
+    profile = Profile.objects.filter(user_id=current_user.id).first()
+    if profile is None:
+        profile = Profile.objects.filter(
+            user_id=current_user.id).first()  # get profile
+        posts = Post.objects.filter(user_id=current_user.id)
+        locations = Location.objects.all()
+        neighborhood = Neighborhood.objects.all()
+        business = Business.objects.filter(user_id=current_user.id)
+        return render(request, "profile.html", {"danger": "please update your Profile ", "locations": locations, "neighborhood": neighborhood, "business": business, "posts": posts})
+    else:
+        neighborhood = profile.neighborhood
+        posts = Post.objects.filter(neighbourhood=neighborhood).order_by("-created_at")
+        return render(request, 'index.html', {'posts': posts,"profile":profile})
+
+
 @login_required(login_url='/accounts/login/')
 def profile(request):
     current_user = request.user
@@ -160,7 +175,7 @@ def add_post(request):
                 location=location,
                 neighborhood=neighborhood,
             )
-            post.create_post()
+            post.save_post()
 
             return redirect("/profile", {"success": "Post was Created Successfully"})
         else:
@@ -172,7 +187,7 @@ def add_post(request):
                 location=location,
                 neighborhood=neighborhood,
             )
-            post.create_post()
+            post.save_post()
 
             return redirect("/profile", {"success": "Post Created Successfully"})
 
