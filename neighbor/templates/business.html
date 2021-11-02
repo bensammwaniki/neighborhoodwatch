@@ -2,15 +2,15 @@
 {% load static %}
 {% block content %}
 
-<div class="container">
-    <div class="col-sm-8 text-center">
-        <h1>Latest posts</h1>
-    </div>
-
+<div class="container d-flex justify-content-evenly mt-3">
 
     <div class='row col-sm-8'>
+
+        <div class="col-sm-12 text-center">
+            <h1>Latest posts</h1>
+        </div>
     {% for post in posts%}
-        <div class="card" style="width: 24rem; margin: 10px;padding: 10px;">
+        <div class="card cards1 m-3" style="width: 24rem;padding: 10px;">
             <img src="{{ post.image.url }}" class="card-img-top carddisp" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{ post.name }}</h5>
@@ -31,10 +31,6 @@
                         alt="" class="avatar-md avatar rounded-circle">
                         <small>  {{ post.user.username}}</small>
                     </div>
-                    <div>
-                        <a href="/business" type="button" class="btn btn-warning">Learn more</a>
-                    </div>
-                    
                 </div>
             </div>
             </div>
@@ -43,14 +39,18 @@
     </div>
 
     <div class="row col-sm-4">
+
+        <div class="col-sm-12 text-center">
+            <h1>Latest Business</h1>
+        </div>
         {% for bs in business %} 
-        <div class="col-sm-4">
+        <div class="col-sm-12">
           <div class="card cards1">
             <div class="card-body">
               <h5 class="card-title">{{bs.name}}</h5>
-              <p class="card-text badge bg-dark">{{bs.email}}</p>
-              <p class="card-text badge bg-warning">{{bs.neighbourhood}}</p>
-              <p class="card-text badge bg-success">{{bs.description}}</p>
+              <p class="card-text badge bg-dark">Contact : {{bs.email}}</p>
+              <p class="card-text badge bg-warning">Locale : {{bs.neighbourhood}}</p>
+              <p class="card-text badge bg-success">Desc : {{bs.description}}</p>
             </div>
           </div>
         </div>
