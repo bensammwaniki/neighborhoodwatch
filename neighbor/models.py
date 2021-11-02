@@ -4,53 +4,6 @@ from cloudinary.models import CloudinaryField
 # Create your models here.
 
 
-class Post(models.Model):
-
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='images')
-
-    image = CloudinaryField('image')
-    title = models.CharField(max_length=50)
-    location = models.CharField(max_length=50)
-    content = models.CharField(max_length=300)
-    category = models.CharField(max_length=50)
-    posted_date = models.DateTimeField(auto_now_add=True)
-    profile = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    @classmethod
-    def get_post_by_user(cls, user):
-        project = cls.objects.filter(user=user)
-        return project
-
-    def save_image(self):
-        self.save()
-
-    def delete_project(self):
-        self.delete()
-
-    #  get by id
-    @classmethod
-    def get_one_post(cls, id):
-        project = cls.objects.get(id=id)
-        return project
-
-    def update_(self, **kwargs):
-        for key, value in kwargs.items():
-            setattr(self, key, value)
-        self.save()    
-
-    @classmethod
-    def search_post(cls, search_term):
-        project = cls.objects.filter(
-                    project_name__icontains=search_term)
-        return project    
-
-    def __str__(self):
-        return self.user.username       
-
-    def __str__(self):
-        return self.image_name
-
-
 class Location(models.Model):
     name = models.CharField(max_length=30)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -145,4 +98,57 @@ class Business(models.Model):
         return business
 
     def __str__(self):
-        return self.name        
+        return self.name 
+
+
+
+
+class Post(models.Model):
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='images')
+
+    image = CloudinaryField('image')
+    title = models.CharField(max_length=50, null=True)
+    content = models.CharField(max_length=300,null=True)
+    category = models.CharField(max_length=50)
+    posted_date = models.DateTimeField(auto_now_add=True)
+    profile = models.ForeignKey(User, on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    neighbourhood = models.ForeignKey(
+        Neighborhood, on_delete=models.CASCADE, default=1)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    @classmethod
+    def get_post_by_user(cls, user):
+        project = cls.objects.filter(user=user)
+        return project
+
+    def save_post(self):
+        self.save()
+
+    def delete_post(self):
+        self.delete()
+
+    #  get by id
+    @classmethod
+    def get_one_post(cls, id):
+        project = cls.objects.get(id=id)
+        return project
+
+    def update_post(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+        self.save()    
+
+    @classmethod
+    def search_post(cls, search_term):
+        project = cls.objects.filter(
+                    project_name__icontains=search_term)
+        return project    
+
+    def __str__(self):
+        return self.user.username       
+
+    def __str__(self):
+        return self.image_name
+

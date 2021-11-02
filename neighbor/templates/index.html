@@ -90,9 +90,9 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        <form  method="post"
-            enctype="multipart/form-data">
-            <div class="form-group">
+        <form action="{% url 'add_post' %}" enctype="multipart/form-data" method="post" >
+          {% csrf_token %}
+          <div class="form-group">
                 <label for="image_name">Post name</label>
                 <input type="text" class="form-control" value="" name="title"
                     required>

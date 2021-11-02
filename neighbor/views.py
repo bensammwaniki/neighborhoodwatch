@@ -139,7 +139,7 @@ def add_post(request):
             businesses = Business.objects.filter(user_id=current_user.id)
             return render(request, "profile.html", {"error":"please update your profile to post","locations": locations, "neighborhood": neighborhood, "categories": category, "businesses": businesses, "posts": posts})
         else:
-            neighbourhood = profile.neighbourhood
+            neighborhood = profile.neighborhood
 
         if location == "":
             location = None
@@ -158,7 +158,7 @@ def add_post(request):
                 image=image_url,
                 category=category,
                 location=location,
-                neighbourhood=neighbourhood,
+                neighborhood=neighborhood,
             )
             post.create_post()
 
@@ -170,7 +170,7 @@ def add_post(request):
                 content=content,
                 category=category,
                 location=location,
-                neighbourhood=neighbourhood,
+                neighborhood=neighborhood,
             )
             post.create_post()
 
