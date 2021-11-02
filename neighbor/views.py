@@ -196,3 +196,19 @@ def add_post(request):
             return redirect("/", {"success": "Post was Created Successfully"})
     else:
         return render(request, "profile.html", {"danger": "Post Creation Failed"})
+
+
+
+
+
+@login_required(login_url='/accounts/login/')
+def search(request):
+    if 'search' in request.GET and request.GET['search']:
+        search_term = request.GET.get('search').lower()
+        search = Business.search_by_name(search_term)
+        message = f'{search_term}'
+
+        return render(request, 'search.html', {'found': message, 'search': search})
+    else:
+        message = 'Not found'
+        return render(request, 'search.html', {'danger': message})    

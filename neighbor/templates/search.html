@@ -7,25 +7,28 @@
 <div class="container">
 
 <div class="row text-center">
+{% if danger %}
 <h1>{{ danger }}</h1>
+{%else%}
 <h1>These are the results of your search "{{ found }}"</h1>
 </div>
+{% endif %}
+
 
    
     <div class="row">
-        {% for project in search %}
-        <div class="card" style="width: 25rem;height: fit-content;margin: 10px;padding: 5px;">
-            <img src="{{ project.screenshort.url }}" class="card-img-top" alt="..." style="object-fit: cover;height: 260px;">
-        <div class="card-body">
-          <h5 class="card-title">{{ project.project_name }}</h5>
-          <p class="card-text">
-            <span class="badge bg-info text-light">Posted by :{{ project.profile }}</span>
-            <span class="badge bg-warning text-light">Posted on :{{ project.posted_date }}</span>
-
-          </p>
+      {% for bs in business %} 
+      <div class="col-sm-4">
+        <div class="card cards1">
+          <div class="card-body">
+            <h5 class="card-title">{{bs.name}}</h5>
+            <p class="card-text badge bg-dark">{{bs.email}}</p>
+            <p class="card-text badge bg-warning">{{bs.neighbourhood}}</p>
+            <p class="card-text badge bg-success">{{bs.description}}</p>
+          </div>
         </div>
-    </div>
-        {% endfor %}
+      </div>
+      {% endfor %}
       </div>
 
   </div>

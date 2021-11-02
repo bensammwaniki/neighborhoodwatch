@@ -45,6 +45,9 @@
 
 
   <div class="container">
+    <div class="col-sm-12 text-center">
+      <h1>Latest posts</h1>
+    </div>
       <div class='row'>
 
 <!-- card  -->
@@ -71,7 +74,7 @@
                         <small>  {{ post.user.username}}</small>
                     </div>
                     <div>
-                        <a href="/business" type="button" class="btn btn-warning">Learn more</a>
+                        <a href="/business" type="button" class="btn btn-warning">Learn more <i class="bi bi-building"></i> </a>
                     </div>
                     
                 </div>
@@ -124,7 +127,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add post update</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Hi!! {{ user.username }} <i class="bi bi-emoji-smile"></i> post an update</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
