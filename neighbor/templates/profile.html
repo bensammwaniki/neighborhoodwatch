@@ -34,53 +34,67 @@
     <!-- display card  -->
 
     <div class="row col-md-9">
-      <div class="col-sm-9 m-3" style="height: fit-content;">
+      <div class="col-sm-12" style="height: fit-content;">
         <div class="card cards1">
           <div class="card-body">
             <h5 class="card-title">Add New business</h5>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <form action="">
+            <form action="{% url 'add_business' %}" method="POST">
+              {% csrf_token %}
                   <div class="form-group mb-3">
                       <label for="bs_name">Business Name</label>
                       <input type="text" class="form-control" id="bs_name"
                           name="bs_name" value="">
                   </div>
                   <div class="form-group mb-3">
-                    <label for="bs_name">Description</label>
-                    <input type="text" class="form-control" id="Description"
-                        name="description" value="">
-                  </div>
+                    <label for="bs_name">Business Email</label>
+                    <input type="text" class="form-control" id="bs_email"
+                        name="bs_email" value="">
+                </div>
 
                   <div class="form-group mb-3">
+                    <label for="bs_name">Description</label>
+                    <input type="text" class="form-control" id="Description"
+                        name="bs_desc" value="">
+                  </div>
+
+                  <!-- <div class="form-group mb-3">
                     <label for="location">Location</label>
                     <select class="form-select" aria-label="Default select example" required>
                       <option selected>select your location</option>
-                      <option value="Donholm">Donholm</option>
-                      <option value="Kayole">Kayole</option>
-                      <option value="Umoja">Umoja</option>
+                      {% for neighborhood in neighborhood %}
+                      <option value="{{neighborhood.name}}">{{neighborhood.name}}</option>
+                      {% endfor %}
                     </select>
-                  </div>
+                  </div> -->
                   <button type="submit" class="btn btn-warning">Save</button>
             </form>
           </div>
         </div>
       </div>
-<div class="clear-fix">
 
-
-      
-      <div class="col-sm-4 m-2">
+<div class="col-sm-12 text-center">
+  <h1>Business</h1>
+</div>
+     {% for bs in business %} 
+      <div class="col-sm-4">
         <div class="card cards1">
           <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title">{{bs.name}}</h5>
+            <p class="card-text badge bg-dark">{{bs.email}}</p>
+            <p class="card-text badge bg-warning">{{bs.neighbourhood}}</p>
+            <p class="card-text badge bg-success">{{bs.description}}</p>
           </div>
         </div>
       </div>
-    </div>
+      {% endfor %}
 
 
-    <div class="row col-md-9">
+      <div class="col-sm-12 text-center">
+        <h1>Posts</h1>
+      </div>
+
+    <div class="row col-md-12">
       <div class="col-sm-4">
         <div class="card cards1">
           <div class="card-body">

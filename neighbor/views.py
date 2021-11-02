@@ -17,8 +17,8 @@ def profile(request):
     posts = Post.objects.filter(user_id=current_user.id)
     locations = Location.objects.all()
     neighborhood = Neighborhood.objects.all()
-    businesses = Business.objects.filter(user_id=userid)
-    return render(request, 'profile.html', {'profile': profile, 'posts': posts, 'locations': locations, 'neighborhood': neighborhood, 'businesses': businesses})
+    business = Business.objects.filter(user_id=userid)
+    return render(request, 'profile.html', {'profile': profile, 'posts': posts, 'locations': locations, 'neighborhood': neighborhood, 'business': business})
 
 @login_required(login_url='/accounts/login/')
 def update_profile(request):
@@ -80,3 +80,101 @@ def update_profile(request):
         return redirect('/profile', {'success': 'Updated your profile Successfully'})
     else:
         return render(request, 'profile.html', {'failed': 'Update Failed'})  
+
+
+@login_required(login_url="/accounts/login/")
+def add_business(request):
+    if request.method == "POST":
+        current_user = request.user
+        name = request.POST["bs_name"]
+        email = request.POST["bs_email"]
+        description = request.POST["bs_desc"]
+        profile = Profile.objects.filter(user_id=current_user.id).first()
+
+        if profile is None:
+            profile = Profile.objects.filter(
+                user_id=current_user.id).first()  # get profile
+            posts = Post.objects.filter(user_id=current_user.id)
+            locations = Location.objects.all()
+            neighborhood = Neighborhood.objects.all()
+            business = Business.objects.filter(user_id=current_user.id)
+            return render(request, "profile.html", { "locations": locations, "neighborhood": neighborhood,"business": business,"posts": posts})
+        else:
+            neighborhood = profile.neighborhood
+
+        if neighborhood == "":
+            neighborhood = None
+        else:
+            neighborhood = Neighborhood.objects.get(name=neighborhood)
+
+        business = Business(
+            user_id=current_user.id,
+            name=name,
+            email=email,
+            description=description,
+            neighbourhood=neighborhood,
+        )
+        business.create_business()
+
+        return redirect("/profile", {"success": "Business Created Successfully"})
+    else:
+        return render(request, "profile.html", {"danger": "Business Failed"})
+
+
+@login_required(login_url="/accounts/login/")
+def add_post(request):
+    if request.method == "POST":
+        current_user = request.user
+        title = request.POST["title"]
+        content = request.POST["content"]
+        category = request.POST["category"]
+        location = request.POST["location"]
+
+        profile = Profile.objects.filter(user_id=current_user.id).first()
+        if profile is None:
+            profile = Profile.objects.filter(user_id=current_user.id).first()
+            posts = Post.objects.filter(user_id=current_user.id)
+            locations = Location.objects.all()
+            neighborhood = Neighborhood.objects.all()
+            businesses = Business.objects.filter(user_id=current_user.id)
+            return render(request, "profile.html", {"error":"please update your profile to post","locations": locations, "neighborhood": neighborhood, "categories": category, "businesses": businesses, "posts": posts})
+        else:
+            neighbourhood = profile.neighbourhood
+
+        if location == "":
+            location = None
+        else:
+            location = Location.objects.get(name=location)
+
+        if request.FILES:
+            image = request.FILES["image"]
+            image = cloudinary.uploader.upload(image)
+            image_url = image["url"]
+
+            post = Post(
+                user_id=current_user.id,
+                title=title,
+                content=content,
+                image=image_url,
+                category=category,
+                location=location,
+                neighbourhood=neighbourhood,
+            )
+            post.create_post()
+
+            return redirect("/profile", {"success": "Post was Created Successfully"})
+        else:
+            post = Post(
+                user_id=current_user.id,
+                title=title,
+                content=content,
+                category=category,
+                location=location,
+                neighbourhood=neighbourhood,
+            )
+            post.create_post()
+
+            return redirect("/profile", {"success": "Post Created Successfully"})
+
+    else:
+        return render(request, "profile.html", {"danger": "Post Creation Failed"})
