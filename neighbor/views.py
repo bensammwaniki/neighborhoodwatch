@@ -35,6 +35,22 @@ def profile(request):
     business = Business.objects.filter(user_id=userid)
     return render(request, 'profile.html', {'profile': profile, 'posts': posts, 'locations': locations, 'neighborhood': neighborhood, 'business': business})
 
+
+@login_required(login_url='/accounts/login/')
+def business(request):
+    current_user = request.user
+    userid =current_user.id
+    profile = Profile.objects.filter(user_id = current_user.id).first()
+    posts = Post.objects.filter(user_id=current_user.id)
+    locations = Location.objects.all()
+    neighborhood = Neighborhood.objects.all()
+    business = Business.objects.filter(user_id=userid)
+    return render(request, 'business.html', {'profile': profile, 'posts': posts, 'locations': locations, 'neighborhood': neighborhood, 'business': business})
+
+
+
+
+
 @login_required(login_url='/accounts/login/')
 def update_profile(request):
     if request.method == 'POST':

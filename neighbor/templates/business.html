@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="col-sm-8 text-center">
+        <h1>Latest posts</h1>
+    </div>
+
+
+    <div class='row col-sm-8'>
+    {% for post in posts%}
+        <div class="card" style="width: 24rem; margin: 10px;padding: 10px;">
+            <img src="{{ post.image.url }}" class="card-img-top carddisp" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.name }}</h5>
+                <div class="bdge">
+                    <div>
+                        <span class="badge bg-success"> posted on...:{{ post.posted_date|date:"M d, Y"  }}</span>
+                    </div>
+                    <div>
+                        <p class="badge bg-danger">{{ post.user.profile.location }}</p>
+                        <p class="badge bg-info">{{ post.user.profile.neighborhood }}</p>
+                    </div>
+                </div>
+                <div class="infom">
+
+                    <div class="inf">
+                        <img src="{{post.user.profile.profile_photo.url}}"
+                        style="width: 50px;height: 50px;"
+                        alt="" class="avatar-md avatar rounded-circle">
+                        <small>  {{ post.user.username}}</small>
+                    </div>
+                    <div>
+                        <a href="/business" type="button" class="btn btn-warning">Learn more</a>
+                    </div>
+                    
+                </div>
+            </div>
+            </div>
+    <!-- card  -->
+    {% endfor %}          
+    </div>
+
+    <div class="row col-sm-4">
+        {% for bs in business %} 
+        <div class="col-sm-4">
+          <div class="card cards1">
+            <div class="card-body">
+              <h5 class="card-title">{{bs.name}}</h5>
+              <p class="card-text badge bg-dark">{{bs.email}}</p>
+              <p class="card-text badge bg-warning">{{bs.neighbourhood}}</p>
+              <p class="card-text badge bg-success">{{bs.description}}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+</div>
+
+{% endblock %}

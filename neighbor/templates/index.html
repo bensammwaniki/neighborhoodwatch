@@ -55,10 +55,11 @@
                 <h5 class="card-title">{{ post.name }}</h5>
                 <div class="bdge">
                     <div>
-                        <span class="badge bg-success"> posted on {{ post.posted_date|date:"M d, Y"  }}</span>
+                        <span class="badge bg-success"> posted on...:{{ post.posted_date|date:"M d, Y"  }}</span>
                     </div>
                     <div>
-                        <p class="badge bg-info">live link</p>
+                      <p class="badge bg-danger">{{ post.user.profile.location }}</p>
+                        <p class="badge bg-info">{{ post.user.profile.neighborhood }}</p>
                     </div>
                 </div>
                 <div class="infom">

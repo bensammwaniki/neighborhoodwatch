@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-<div class="container" style="margin-top: 20px;">
+<style>
+  body{
+    background-image: url("../../static/img/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
+<div class="container" style="margin-top: 20px;margin-bottom: 20px;">
   <div class="row flex nowrap">
     <!-- display card  -->
-    <div class="card cards1 col-sm-3 m-2 p-2" style="min-height: 500px;">
+    <div class="card cards1 col-sm-3 m-2 p-2" style="max-height: fit-content;">
       {% if profile.profile_photo %}
       <img src="{{ profile.profile_photo.url }}" class="card-img-top" alt="..." style="width: 18rem;height: 18rem; border-radius: 50%;object-fit: cover;">
       {% else %}
@@ -29,6 +35,12 @@
         <p class="card-text badge bg-danger ">
          Location :   {{ profile.location }}
         </p>
+        <p class="card-text badge bg-success ">
+          Joined on  : {{ profile.created_at }}
+         </p>
+         <p class="card-text badge bg-success ">
+          Community  : {{ profile.neighborhood }}
+         </p>
       </div>
     </div>
     <!-- display card  -->
@@ -86,37 +98,64 @@
       </div>
 
     <div class="row col-md-12">
+
+      {% for post in posts%}
       <div class="col-sm-4">
         <div class="card cards1">
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <img src="{{ post.image.url }}" class="card-img-top carddisp2" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.name }}</h5>
+                <div class="bdge">
+                    <div>
+                        <span class="badge bg-success"> posted on {{ post.posted_date|date:"M d, Y"  }}</span>
+                    </div>
+                </div>
+                <div class="infom">
+
+                    <div class="inf">
+                        <img src="{{post.user.profile.profile_photo.url}}"
+                        style="width: 50px;height: 50px;"
+                        alt="" class="avatar-md avatar rounded-circle">
+                        <small>  {{ post.user.username}}</small>
+                    </div>
+                </div>
+            </div>
           </div>
-        </div>
       </div>
-
-
-      <div class="col-sm-4">
-        <div class="card cards1">
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+<!-- card  -->
+<!-- card  -->
+{% empty %}
+<div class="card" style="width: 24rem; margin: 10px;padding: 10px;">
+  <img src="{% static '/img/3.jpg' %}" class="card-img-top" alt="...">
+  <div class="card-body">
+      <h5 class="card-title">Special title treatment</h5>
+      <div class="bdge">
+          <div>
+              <span class="badge bg-success">date</span>
           </div>
-        </div>
-      </div>
-
-
-      <div class="col-sm-4">
-        <div class="card cards1">
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+          <div>
+              <a href="http://" target="_blank" rel="noopener noreferrer" class="badge bg-dark">live link</a>
           </div>
-        </div>
       </div>
+      <div class="infom">
+
+          <div class="inf">
+              <img src="{% static '/img/3.jpg' %}"
+              style="width: 50px;height: 50px;"
+              alt="" class="avatar-md avatar rounded-circle">
+              <small>  Special title treatment</small>
+          </div>
+          <div>
+              <a href="http://" type="button" class="btn btn-warning">Rate app</a>
+          </div>
+          
+      </div>
+  </div>
+</div>
+<!-- card  -->
+
+{% endfor %}  
+
     </div> 
 
   </div>
