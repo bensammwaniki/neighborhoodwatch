@@ -44,3 +44,29 @@ class LocationTestClass(TestCase):
         self.location.delete()
         locations = Location.objects.all()
         self.assertTrue(len(locations) == 0)
+
+class PostTestClass(TestCase):
+    def setUp(self):
+        # create a user
+        self.user = User.objects.create_user(
+            username='benmmm',
+            password='1234bens'
+        )
+        self.location = Location(name='Test Location')
+        self.location.save_location()
+        self.post = Post(title='Test Post', content='Test Content',
+                         location=self.location,user=self.user)
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.post, Post))
+
+    def test_save_method(self):
+        self.post.save()
+        posts = Post.objects.all()
+        self.assertTrue(len(posts) > 0)
+
+    def test_delete_method(self):
+        self.post.save()
+        self.post.delete_post()
+        posts = Post.objects.all()
+        self.assertTrue(len(posts) == 0)
