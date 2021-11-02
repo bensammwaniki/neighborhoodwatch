@@ -66,7 +66,7 @@ The following languages have been used on this project:
 
 ## Setup/Installation Requirements
 
-- Live link to view the project <a target="_blank" href="https://bensamawards.herokuapp.com/">Awaards</a>
+- Live link to view the project <a target="_blank" href="https://neighborhoodbensam.herokuapp.com/">Neighborhood</a>
 
 ## Screenshots
 
