@@ -206,9 +206,10 @@ def search(request):
     if 'search' in request.GET and request.GET['search']:
         search_term = request.GET.get('search').lower()
         search = Business.search_by_name(search_term)
+        posts = Post.search_post(search_term)
         message = f'{search_term}'
 
-        return render(request, 'search.html', {'found': message, 'search': search})
+        return render(request, 'search.html', {'found': message, 'search': search ,'posts':posts})
     else:
         message = 'Not found'
         return render(request, 'search.html', {'danger': message})    

@@ -143,7 +143,7 @@ class Post(models.Model):
     @classmethod
     def search_post(cls, search_term):
         project = cls.objects.filter(
-                    project_name__icontains=search_term)
+                    title__icontains=search_term)
         return project    
 
     def __str__(self):

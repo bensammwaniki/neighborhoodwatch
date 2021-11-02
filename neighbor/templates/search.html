@@ -17,6 +17,12 @@
 
    
     <div class="row">
+      {% if danger %}
+        {%else%}
+      <div class="col-sm-12 text-center">
+        <h1>Posts</h1>
+      </div>
+      {% endif %}
       {% for bs in search %} 
       <div class="col-sm-4">
         <div class="card cards1">
@@ -30,6 +36,63 @@
       </div>
       {% endfor %}
       </div>
+
+
+      <div class='row'>
+        {% if danger %}
+        {%else%}
+        <div class="col-sm-12 text-center">
+          <h1>Business</h1>
+        </div>
+        {% endif %}
+        <!-- card  -->
+        {% for post in posts %}
+                <div class="card" style="width: 24rem; margin: 10px;padding: 10px;">
+                    <img src="{{ post.image.url }}" class="card-img-top carddisp" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.name }}</h5>
+                        <div class="bdge">
+                            <div>
+                                <span class="badge bg-success"> posted on...:{{ post.posted_date|date:"M d, Y"  }}</span>
+                            </div>
+                            <div>
+                              <p class="badge bg-danger">{{ post.user.profile.location }}</p>
+                                <p class="badge bg-info">{{ post.user.profile.neighborhood }}</p>
+                            </div>
+                        </div>
+                        <div class="infom">
+        
+                            <div class="inf">
+                                <img src="{{post.user.profile.profile_photo.url}}"
+                                style="width: 50px;height: 50px;"
+                                alt="" class="avatar-md avatar rounded-circle">
+                                <small>  {{ post.user.username|upper }}</small>
+                            </div>
+        
+                            <div>
+                              <span class="badge bg-light text-dark">{{ post.title|upper }}</span>
+                          </div>
+        
+                            <div>
+                                <a href="/business" type="button" class="btn btn-warning">Learn more <i class="bi bi-building"></i> </a>
+                            </div>
+                            
+                        </div>
+                        <div>
+                          <p class="bg-light text-dark">{{ post.content }}</p>
+                      </div>
+        
+        
+        
+                    </div>
+                  </div>
+        <!-- card  -->
+        
+        {% endfor %}          
+        <!-- card  -->
+        
+        
+              </div>
 
   </div>
 
