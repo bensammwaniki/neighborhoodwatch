@@ -80,7 +80,7 @@
   <h1>Business</h1>
 </div>
      {% for bs in business %} 
-      <div class="col-sm-4">
+      <div class="col-sm-4" style="height: fit-content;">
         <div class="card cards1">
           <div class="card-body">
             <h5 class="card-title">{{bs.name}}</h5>
@@ -117,8 +117,17 @@
                         style="width: 50px;height: 50px;"
                         alt="" class="avatar-md avatar rounded-circle">
                         <small>  {{ post.user.username}}</small>
+
+                        <div>
+                          <p class="bg-light text-dark">Title : {{ post.title }}</p>
+                      </div>
                     </div>
                 </div>
+
+                <div>
+                  <p class="bg-light text-dark">{{ post.content }}</p>
+              </div>
+
             </div>
           </div>
       </div>
