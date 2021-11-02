@@ -9,8 +9,10 @@ class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='images')
 
     image = CloudinaryField('image')
-    post_name = models.CharField(max_length=50)
+    title = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
+    content = models.CharField(max_length=300)
+    category = models.CharField(max_length=50)
     posted_date = models.DateTimeField(auto_now_add=True)
     profile = models.ForeignKey(User, on_delete=models.CASCADE)
 

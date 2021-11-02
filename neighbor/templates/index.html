@@ -94,23 +94,32 @@
             enctype="multipart/form-data">
             <div class="form-group">
                 <label for="image_name">Post name</label>
-                <input type="text" class="form-control" value="" name="post_name"
+                <input type="text" class="form-control" value="" name="title"
                     required>
             </div>
             <div class="form-group">
                 <label for="image_name">location</label>
-                <select class="form-select" aria-label="Default select example" required>
+                <select class="form-select" aria-label="Default select example" name="location" required>
                     <option selected>select your location</option>
                     <option value="Donholm">Donholm</option>
                     <option value="Kayole">Kayole</option>
                     <option value="Umoja">Umoja</option>
                   </select>
             </div>
+            <div class="form-group">
+              <label for="image_name">Post Category</label>
+              <select class="form-select" aria-label="Default select example" name="category" required>
+                  <option value="Fun" selected>Funnn</option>
+                  <option value="News">News</option>
+                  <option value="Alert">Alert</option>
+                  <option value="Updates">Updates</option>
+                </select>
+          </div>
             <input type="hidden" name="user_id" value="">
             <div class="form-group mt-3">
                 <label for="exampleFormControlTextarea1">Description</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"
-                    name="project_url" required></textarea>
+                    name="content" required></textarea>
             </div>
             <div class="form-group mt-3">
                 <label for="exampleFormControlFile1">Upload a file</label>
