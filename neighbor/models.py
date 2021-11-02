@@ -112,7 +112,7 @@ class Post(models.Model):
     content = models.CharField(max_length=300,null=True)
     category = models.CharField(max_length=50)
     posted_date = models.DateTimeField(auto_now_add=True)
-    profile = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     neighborhood = models.ForeignKey(
         Neighborhood, on_delete=models.CASCADE, default=1)

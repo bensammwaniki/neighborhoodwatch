@@ -142,6 +142,6 @@ nav{
     color: turquoise;
 }
 .carddisp{
-min-height: 250px;
-object-fit: cover;
+    height: 250px;
+    object-fit: cover;
 }

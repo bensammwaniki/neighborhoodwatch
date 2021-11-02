@@ -20,8 +20,8 @@ def home(request):
         return render(request, "profile.html", {"danger": "please update your Profile ", "locations": locations, "neighborhood": neighborhood, "business": business, "posts": posts})
     else:
         neighborhood = profile.neighborhood
-        posts = Post.objects.filter(neighbourhood=neighborhood).order_by("-created_at")
-        return render(request, 'index.html', {'posts': posts,"profile":profile})
+        posts = Post.objects.filter(neighborhood=neighborhood).order_by("-posted_date")
+    return render(request, 'index.html', {'posts': posts,"profile":profile})
 
 
 @login_required(login_url='/accounts/login/')
@@ -177,19 +177,6 @@ def add_post(request):
             )
             post.save_post()
 
-            return redirect("/profile", {"success": "Post was Created Successfully"})
-        else:
-            post = Post(
-                user_id=current_user.id,
-                title=title,
-                content=content,
-                category=category,
-                location=location,
-                neighborhood=neighborhood,
-            )
-            post.save_post()
-
-            return redirect("/profile", {"success": "Post Created Successfully"})
-
+            return redirect("/", {"success": "Post was Created Successfully"})
     else:
         return render(request, "profile.html", {"danger": "Post Creation Failed"})

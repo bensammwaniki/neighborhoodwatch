@@ -48,7 +48,41 @@
       <div class='row'>
 
 <!-- card  -->
-<div class="card cards1" style="width: 24rem; margin: 10px;padding: 10px;">
+{% for post in posts%}
+        <div class="card" style="width: 24rem; margin: 10px;padding: 10px;">
+            <img src="{{ post.image.url }}" class="card-img-top carddisp" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.name }}</h5>
+                <div class="bdge">
+                    <div>
+                        <span class="badge bg-success"> posted on {{ post.posted_date|date:"M d, Y"  }}</span>
+                    </div>
+                    <div>
+                        <p class="badge bg-info">live link</p>
+                    </div>
+                </div>
+                <div class="infom">
+
+                    <div class="inf">
+                        <img src="{{post.user.profile.profile_photo.url}}"
+                        style="width: 50px;height: 50px;"
+                        alt="" class="avatar-md avatar rounded-circle">
+                        <small>  {{ post.user.username}}</small>
+                    </div>
+                    <div>
+                        <a href="/business" type="button" class="btn btn-warning">Learn more</a>
+                    </div>
+                    
+                </div>
+
+
+
+            </div>
+          </div>
+<!-- card  -->
+<!-- card  -->
+{% empty %}
+<div class="card" style="width: 24rem; margin: 10px;padding: 10px;">
     <img src="{% static '/img/3.jpg' %}" class="card-img-top" alt="...">
     <div class="card-body">
         <h5 class="card-title">Special title treatment</h5>
@@ -69,12 +103,15 @@
                 <small>  Special title treatment</small>
             </div>
             <div>
-                <a href="http://"  class="badge bg-info text-light">learn more</a>
+                <a href="http://" type="button" class="btn btn-warning">Rate app</a>
             </div>
             
         </div>
     </div>
   </div>
+<!-- card  -->
+
+{% endfor %}          
 <!-- card  -->
 
 
@@ -116,7 +153,6 @@
                   <option value="Updates">Updates</option>
                 </select>
           </div>
-            <input type="hidden" name="user_id" value="">
             <div class="form-group mt-3">
                 <label for="exampleFormControlTextarea1">Description</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"
